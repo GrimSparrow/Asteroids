@@ -1,0 +1,14 @@
+{
+    "name": "ModelAssembly",
+    "rootNamespace": "AsteroidsKefir.Models",
+    "references": [],
+    "includePlatforms": [],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false,
+    "overrideReferences": false,
+    "precompiledReferences": [],
+    "autoReferenced": true,
+    "defineConstraints": [],
+    "versionDefines": [],
+    "noEngineReferences": false
+}
