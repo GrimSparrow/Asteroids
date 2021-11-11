@@ -1,14 +1,31 @@
 using AsteroidsKefir.Models;
 using UnityEngine;
-using Views;
 
+/// <summary>
+/// Главный компоненте, управляющий игрой.
+/// </summary>
 public class Application : MonoBehaviour
 {
-    [SerializeField] private Camera camera;
+    [SerializeField] private Camera mainCamera;
+    
+    /// <summary>
+    /// Представление корабля.
+    /// </summary>
     [SerializeField] private ShipView shipView;
-    [SerializeField] private StandartBulletView bulletPrefab;
-    [SerializeField] private LaserBulletView laserPrefab;
+    
+    /// <summary>
+    /// Генератор представлений.
+    /// </summary>
+    [SerializeField] private ViewsSpawner viewsSpawner;
 
+    /// <summary>
+    /// Окно результата. Можно инстансить, но сейчас просто включаю.
+    /// </summary>
+    [SerializeField] private EndGameView endGameView;
+
+    /// <summary>
+    /// Контроллер инпута.
+    /// </summary>
     private ShipInputController _shipInputController;
     
     /// <summary>
@@ -16,31 +33,26 @@ public class Application : MonoBehaviour
     /// </summary>
     private Ship _shipModel;
 
+    /// <summary>
+    /// Модель корабля.
+    /// </summary>
+    public Ship ShipModel => _shipModel;
+
     private void Awake()
     {
-        _shipModel = new Ship(new Vector2(0.5f, 0.5f), 0f);
+        var shipStartPosition = new Vector2(0.5f, 0.5f);
+        _shipModel = new Ship(shipStartPosition, 0f);
+        shipView.Initialize(_shipModel, mainCamera);
+        
         _shipInputController = new ShipInputController(_shipModel);
-        shipView.Initialize(_shipModel, camera);
     }
-
+    
     private void OnEnable()
     {
         _shipInputController.Enable();
-        
-        //Вероятно надо будет делать фабрику и не забыть отписаться. Пока так в тестовых целях.
-        _shipInputController.PrimaryAttackPerformed += () =>
-        {
-            var bulletView = Instantiate(bulletPrefab);
-            var bullet = new StandartBullet(_shipModel.Position, _shipModel.Forward);
-            bulletView.Initialize(bullet, camera);
-        };
-        
-        _shipInputController.SecondaryAttackPerformed += () =>
-        {
-            var bulletView = Instantiate(laserPrefab);
-            var bullet = new Laser(_shipModel.Position, _shipModel.Forward);
-            bulletView.Initialize(bullet, camera);
-        };
+        _shipModel.BaseWeapon.Shooting += OnShot;
+        _shipModel.BlasterWeapon.Shooting += OnShot;
+        _shipModel.Destroying += OnPlayerDie;
     }
 
     private void Update()
@@ -51,5 +63,26 @@ public class Application : MonoBehaviour
     private void OnDisable()
     {
         _shipInputController.Disable();
+        _shipModel.BaseWeapon.Shooting -= OnShot;
+        _shipModel.BlasterWeapon.Shooting -= OnShot;
+        _shipModel.Destroying += OnPlayerDie;
+    }
+
+    /// <summary>
+    /// Был произведен выстрел.
+    /// </summary>
+    private void OnShot(Bullet bullet)
+    {
+        viewsSpawner.GenerateBulletView(bullet);
+    }
+
+    /// <summary>
+    /// Действия при поражении игрока.
+    /// </summary>
+    private void OnPlayerDie()
+    {
+        Time.timeScale = 0;
+        _shipInputController.Disable();
+        endGameView.ShowEndView();
     }
 }

@@ -27,10 +27,7 @@ namespace AsteroidsKefir.Models
         {
             _currentLifetime -= deltaTime;
 
-            if (_currentLifetime <= 0)
-            {
-                Destroy();
-            }
+            if (_currentLifetime <= 0) Destroy();
         }
     }
 }

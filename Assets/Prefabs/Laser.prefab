@@ -12,10 +12,10 @@ GameObject:
   - component: {fileID: 3639603928822256043}
   - component: {fileID: 1552048593146231102}
   - component: {fileID: 5566718827434125581}
-  - component: {fileID: 8880202331366915944}
-  m_Layer: 0
+  - component: {fileID: 2018166360804518983}
+  m_Layer: 8
   m_Name: Laser
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: -1
   m_Sprite: {fileID: -6859215838964407468, guid: 48c422578f8179543b853a33e141cc93, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -122,7 +122,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 0.5, y: 0}
     oldSize: {x: 0.32, y: 0.32}
     newSize: {x: 0.32, y: 0.32}
     adaptiveTilingThreshold: 0.5
@@ -132,7 +132,7 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.32, y: 0.32}
   m_EdgeRadius: 0
---- !u!114 &8880202331366915944
+--- !u!114 &2018166360804518983
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -141,6 +141,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 2475299360981932604}
   m_Enabled: 0
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3c2d9d8b91ef4fb48f8ecb8fc079190e, type: 3}
+  m_Script: {fileID: 11500000, guid: f69fa843d6b64cd47bda366d4e80efde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

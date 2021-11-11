@@ -1,4 +1,3 @@
-using System;
 using AsteroidsKefir.Models;
 using UnityEngine;
 
@@ -22,12 +21,17 @@ public class View : MonoBehaviour
     /// </summary>
     private ITickable _tickable;
 
+    protected Movable Model => _movableModel;
+    
+    /// <summary>
+    /// 
+    /// </summary>
     private Vector3 ModelPosition => new Vector3(_movableModel.Position.x, _movableModel.Position.y, 1);
-
+    
     /// <summary>
     /// Инициализировать представление и связать с моделью.
     /// </summary>
-    /// <param name="model"></param>
+    /// <param name="model">Модель, связываемая с представлением.</param>
     public void Initialize(Movable model, Camera camera)
     {
         _movableModel = model;
@@ -60,17 +64,20 @@ public class View : MonoBehaviour
     /// <summary>
     /// Изменилось положение модели в пространстве.
     /// </summary>
-    /// <param name="position"></param>
+    /// <param name="position">Новые координаты модели.</param>
     private void OnPositionChanged(Vector2 position) => transform.position = _camera.ViewportToWorldPoint(ModelPosition);
 
     /// <summary>
     /// Изменился угол поворота модели.
     /// </summary>
-    /// <param name="angle"></param>
+    /// <param name="angle">Новый угол поворота модели.</param>
     private void OnRotationChanged(float angle) => transform.rotation = Quaternion.Euler(0f, 0f, _movableModel.Rotation);
 
     /// <summary>
     /// Уничтожить объект.
     /// </summary>
-    private void OnDestroy() => Destroy(gameObject);
+    private void OnDestroy()
+    {
+        Destroy(gameObject);
+    }
 }

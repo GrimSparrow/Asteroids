@@ -62,15 +62,23 @@ namespace AsteroidsKefir.Models
         {
             Position = position;
             PositionChanged?.Invoke(Position);
+            RotationChanged?.Invoke(Rotation);
         }
 
+        /// <summary>
+        /// Повернуть на заданный угол.
+        /// </summary>
+        /// <param name="angle">Угол поворота.</param>
         protected void Rotate(float angle)
         {
             Rotation = Mathf.Repeat(Rotation + angle, MAX_ROTATION_ANGLE);
             RotationChanged?.Invoke(Rotation);
         }
 
-        protected void Destroy()
+        /// <summary>
+        /// "Уничтожить".
+        /// </summary>
+        public void Destroy()
         {
             Destroying?.Invoke();
         }

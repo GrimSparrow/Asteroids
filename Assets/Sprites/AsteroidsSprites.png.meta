@@ -112,9 +112,9 @@ TextureImporter:
       name: Ship
       rect:
         serializedVersion: 2
-        x: 29
+        x: 36
         y: 57
-        width: 49
+        width: 35
         height: 47
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
@@ -133,10 +133,10 @@ TextureImporter:
       name: Asteroid
       rect:
         serializedVersion: 2
-        x: 95
-        y: 54
-        width: 56
-        height: 55
+        x: 97
+        y: 55
+        width: 52
+        height: 52
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -154,10 +154,10 @@ TextureImporter:
       name: AsteroidPiece
       rect:
         serializedVersion: 2
-        x: 132
-        y: 19
-        width: 22
-        height: 23
+        x: 133
+        y: 20
+        width: 20
+        height: 21
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -175,10 +175,10 @@ TextureImporter:
       name: UFO
       rect:
         serializedVersion: 2
-        x: 190
+        x: 191
         y: 57
-        width: 38
-        height: 46
+        width: 36
+        height: 35
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}

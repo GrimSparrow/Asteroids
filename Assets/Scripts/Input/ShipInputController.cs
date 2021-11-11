@@ -1,4 +1,3 @@
-using System;
 using AsteroidsKefir.Models;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -16,19 +15,9 @@ public class ShipInputController
     private Ship _ship;
     
     /// <summary>
-    /// Нажата ли кнопка движения вперед. TODO возможно пересмотрю работу в целом.
+    /// Нажата ли кнопка движения вперед.
     /// </summary>
     private bool MoveForwardPerformed => _input.Ship.MoveForward.phase == InputActionPhase.Performed;
-
-    /// <summary>
-    /// Вызвана обычная атака.
-    /// </summary>
-    public event Action PrimaryAttackPerformed;
-    
-    /// <summary>
-    /// Вызвана вторичная(особая) атака.
-    /// </summary>
-    public event Action SecondaryAttackPerformed;
 
     public ShipInputController(Ship ship)
     {
@@ -67,7 +56,7 @@ public class ShipInputController
     /// </summary>
     private void PrimaryAttack(InputAction.CallbackContext obj)
     {
-        PrimaryAttackPerformed?.Invoke();
+        _ship.BaseWeapon.Shoot();
     }
 
     /// <summary>
@@ -75,7 +64,7 @@ public class ShipInputController
     /// </summary>
     private void SecondaryAttack(InputAction.CallbackContext obj)
     {
-        SecondaryAttackPerformed?.Invoke();
+        _ship.BlasterWeapon.Shoot();
     }
     
     /// <summary>
@@ -101,6 +90,7 @@ public class ShipInputController
         var direction = _input.Ship.Rotate.ReadValue<float>();
 
         if (direction == 0 ) return;
+        
         _ship.Rotate(direction, Time.deltaTime);
     }
 }
